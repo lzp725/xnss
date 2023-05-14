@@ -1,0 +1,67 @@
+
+<script type="text/javascript">
+$(function() {
+    setTimeout(function() {
+        $.require('https://www.google-analytics.com/ga.js', function() {
+            try {
+                var pageTracker = _gat._getTracker("UA-157466948-1");
+                pageTracker._trackPageview();
+            } catch (err) {}
+        });
+    }, 1000);
+    setTimeout(function() {
+        $(".bbs_home_page_three_col .small_logo").each(function(index, element) {
+            if ($(element).children("a").length == 0) {
+                $(".bbs_home_page_three_col .bbs_home_page_row_div").eq(index).children('div:first-child').removeClass("col-lg-8").addClass("col-lg-9");
+                $(".bbs_home_page_three_col .bbs_home_page_row_div").eq(index).children('div:last-child').removeClass("col-lg-4").addClass("col-lg-3");
+                $(".bbs_home_page_three_col .bbs_home_page_row_div").eq(index).children('div:first-child').children("span").css("width", "19rem");
+            }
+        })
+    }, 2000);
+    if (self != top) {
+        $('#header').hide();
+        $('#nav2').hide();
+        $('#footer').hide();
+    }
+     // 导航
+    var new_p = 0, start_scrollTop = 0;
+        $(window).scroll(function(e){  
+                new_p = $(this).scrollTop();  
+                   
+                if(start_scrollTop < new_p) {//下滚  
+					$(".header_fiexd").slideUp("slow");
+                } else {//上滚  
+					$(".header_fiexd").slideDown("slow");
+                }  
+                setTimeout(function(){start_scrollTop = new_p;},0);         
+        });
+     
+    // 返回顶部
+    $(window).scroll(function() {
+        if ($(window).scrollTop() >= 500) {
+            $('.act_go_top').fadeIn(300);
+        } else {
+            $('.act_go_top').fadeOut(300);
+        }
+    });
+    $('.act_go_top').click(function() {
+        $('html,body').animate({
+            scrollTop: '0px'
+        }, 100);
+    });
+    var m1 = 0;     // 滚动的值
+    var m2 = 0;     // 对比时间的值
+    var timer = null;
+    document.onscroll = function() {
+        clearTimeout(timer) // 每次滚动前 清除一次
+        timer = setTimeout(Data, 2000);
+        m1 = document.documentElement.scrollTop || document.body.scrollTop;
+    }
+    function Data() {
+        m2 = document.documentElement.scrollTop || document.body.scrollTop;
+        if(m2 == m1){
+            $('.act_go_top').fadeOut(300);
+        }
+    }
+});
+</script>

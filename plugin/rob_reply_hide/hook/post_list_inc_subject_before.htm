@@ -1,0 +1,22 @@
+<?php if(!empty($first) and $first["reply_hide"] == true or $_post["reply_hide"] == true) { ?>
+    <?php if($uid == $thread['uid'] or $uid == $_post['uid']){?>
+
+    <div class="alert alert-warning" role="alert">
+
+        <?php if(!empty($_post['subject'])) { ?>
+        <h6><a href="<?php echo url("thread-$_post[tid]");?>" target="_blank"><?php echo $_post['subject'];?></a></h6>
+        <?php } ?>
+        <!--{hook post_list_inc_subject_after.htm}-->
+
+        <!--{hook post_list_inc_message_before.htm}-->
+        <?php echo $_post['message_fmt'];?>
+        <!--{hook post_list_inc_message_after.htm}-->
+
+        <!--{hook post_list_inc_filelist_before.htm}-->
+        <?php echo post_file_list_html($_post['filelist']);?>
+    <?php } else { ?>
+    <div class="alert alert-warning" role="alert">
+        <a class="icon icon-lock" style="margin-left: 10px;">   此贴仅允许作者可见</a>
+    </div>
+    <?php } ?>
+<?php } else {?>

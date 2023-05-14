@@ -1,0 +1,11 @@
+{
+    "name": "列表显示图片数量",
+    "brief": "1、只统计显示文字内容图片个数不会统计附件 <br>2、支持原创正版<a href='http://www.432k.cn'>www.432k.cn</a><br>3、使用盗版会严重带来风险损失<br>4、由<a href='http://wpa.qq.com/msgrd?v=3&uin=277177818&site=qq&menu=yes'>迷途</a>制作,作者所属",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

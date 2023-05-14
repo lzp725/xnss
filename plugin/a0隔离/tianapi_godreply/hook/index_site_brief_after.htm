@@ -1,0 +1,16 @@
+<?php
+$tianapi_apikey = kv_get('apikey');
+$get_tianapi=file_get_contents('http://api.tianapi.com/txapi/godreply/?key='.$tianapi_apikey);
+$godreply=json_decode($get_tianapi,true);
+$godreply_content = $godreply['code'] == 200?$godreply['newslist'][0]['title'].' <hr> '.$godreply['newslist'][0]['content']:'数据读取失败，请检查该插件的apikey';
+?>
+<div class="card">
+    <div class="card-header">
+        神回复
+    </div>
+    <div class="card-footer">
+        <?php echo $godreply_content;?>
+    </div>
+</div>
+
+

@@ -1,0 +1,11 @@
+{
+    "name": "贴子访客",
+    "brief": "贴子末尾，显示最近浏览该贴子的会员列表, 一起smart优化版 <a href='http://www.iqismart.com'>一起smart</a>",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

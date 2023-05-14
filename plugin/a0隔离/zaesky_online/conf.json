@@ -1,0 +1,11 @@
+{
+    "name": "在线用户显示标识",
+    "brief": "多方面显示当前用户的在线情况。",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 1,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

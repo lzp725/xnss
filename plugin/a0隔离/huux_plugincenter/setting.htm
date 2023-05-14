@@ -1,0 +1,154 @@
+<template include="../plugin/huux_plugincenter/setting.template.htm">
+    <slot name="plugin_setting_body">
+        <?php if($ak){?>
+        <form action="<?php echo url('plugin-setting-huux_plugincenter-in');?>" id="form" method="post">
+            <div class="form-group row">
+                <label class="col-md-2 form-control-label">
+                    卡号：
+                </label>
+                <div class="col-md-10">
+                    <?php echo $ak;?>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 form-control-label">
+                    当前接口：
+                </label>
+                <div class="col-md-10">
+                    <?php echo $input['in'];?>
+                    <p class="mt-2 text-danger small">
+                        注：每次修改完接口，请手动清理缓存，这样才能更新插件列表。
+                    </p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 form-control-label">
+                </label>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-block mt-2" data-loading-text="提交中..." id="submit" type="submit">
+                        <?php echo lang('confirm');?>
+                    </button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-secondary btn-block mt-2" id="clear" type="button">
+                        <?php echo lang('admin_clear_cache');?>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <?php }else{ ?>
+        <form action="<?php echo url('plugin-setting-huux_plugincenter-ak');?>" id="form" method="post">
+            <div class="form-group row">
+                <label class="col-md-2 form-control-label">
+                    请输入激活卡号
+                </label>
+                <div class="col-md-10">
+                    <?php echo $input['ak'];?>
+                    <p class="mt-2 text-grey small">
+                        说明：一站一号，绑定后不支持解绑，请妥善保管。
+                        <a class="text-danger" href="//huux.cc" target="_blank">
+                            点击获取激活卡号
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 form-control-label">
+                </label>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-block mt-2" data-loading-text="提交中..." id="submit" type="submit">
+                        <?php echo lang('confirm');?>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <?php } ?>
+        <div class="card mt-5">
+            <div class="card-header">大白官方插件列表<div class="float-right">正版插件 | 在线安装升级</div></div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <th>最新插件</th>
+                            <th>分类</th>
+                            <th>更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if($all_plguin){foreach($all_plguin as $plugin) { ?>
+                            <tr valign="top" dir="<?php echo $plugin['dir']; ?>">
+                                <td>
+                                    <div class="media">
+                                        <a class="mr-3" href="<?php echo PLUGIN_HUUX_URL . 'plugin-read-'.$plugin['dir'].'.htm';?>">
+                                            <img src="<?php echo PLUGIN_HUUX_URL .$plugin['icon_url']; ?>" width="40" height="40" />
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="<?php echo PLUGIN_HUUX_URL . 'plugin-read-'.$plugin['dir'].'.htm';?>">
+                                                <?php echo $plugin['name']; ?> <span class="badge badge-light">v
+                                                    <?php echo $plugin['version']; ?> </span></a>
+                                            <div class="md-small text-grey" style="max-height: 38px;max-width:500px;overflow:auto">
+                                                <?php echo $plugin['brief']; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="md-small">
+                                        <?php  $r = array(99=>'未分类', 1=>'风格模板', 2=>'小型插件', 3=>'大型插件', 4=>'接口整合');
+                                            echo $r[$plugin['cateid']];
+                                        ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="md-small">
+                                        <?php echo date('Y年m月d日',$plugin['last_date']);?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php }} ?>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a target="_blank" class="btn btn-primary btn-block mt-2" href="<?php echo PLUGIN_HUUX_URL . 'plugin-list.htm';?>">
+                                更多插件
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </slot>
+</template>
+<script>
+var jform = $('#form');
+var jsubmit = $('#submit');
+jform.on('submit', function() {
+    jform.reset();
+    jsubmit.button('loading');
+    var postdata = jform.serialize();
+    $.xpost(jform.attr('action'), postdata, function(code, message) {
+        if (code == 0) {
+            jsubmit.button(message).delay(1000).button('reset').delay(500).location(xn.url('plugin-setting-huux_plugincenter'));
+        } else if (xn.is_number(code)) {
+            $.alert(message);
+            jsubmit.button('reset');
+        } else {
+            jform.find('[name="' + code + '"]').alert(message).focus();
+            jsubmit.button('reset');
+        }
+    });
+    return false;
+});
+
+var jclear = $('#clear');
+jclear.on('click', function() {
+    $.xpost(xn.url('other-cache'), 'clear_tmp=1&clear_cache=1', function(code, message) {
+        if (code == 0) {
+            jclear.button(message).delay(1000).button('请等待刷新...').delay(500).location(xn.url('plugin-official_free'));
+        } else {
+            window.location.reload();
+        }
+    });
+});
+</script>

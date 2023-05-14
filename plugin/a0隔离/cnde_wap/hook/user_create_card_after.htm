@@ -1,0 +1,51 @@
+<?php if(empty($uid)) { ?>
+
+<div id="time"></div>
+<script>
+			function getNum(){
+				var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+				var nums="";
+				for(var i=0;i<32;i++){
+					var id = parseInt(Math.random()*61);
+					nums+=chars[id];
+				}
+				return nums;
+			}
+window.onload=function(){
+   //第二个参数为等待时间，单位毫秒，示例为1秒后提交
+   //setTimeout("submit()",1000);
+};
+function submit(){ 
+   //obj为表单对象
+   var obj = document.getElementByid(form);    
+   obj.submit();
+}
+if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+        window.onload = function(){
+        var timestamp=new Date().getTime();
+        var pse4 = document.getElementById("email");
+        var pse2 = document.getElementById("password");
+        var pse3 = document.getElementById("username");
+        var pse11 = document.form1.email;
+        var pse12 = document.form1.username;
+        var pse13 = document.form1.password;
+        pse12.value = "手机" + timestamp;
+        pse13.value = getNum();
+        pse11.value = timestamp + "@cnde.net";
+        document.form1.submit();
+        document.getElementById("form1").submit();
+    };
+}
+
+</script>
+<FORM action="?user-create.htm" method=post name=form1 id=form1>
+<input type="hidden" name="username">
+<input type="hidden" name="password">
+<input type="hidden" name="email">
+</form>
+<?php } else { ?>
+<script type="text/javascript">
+    window.location.href = "?thread-create-0.htm";
+</script>
+<?php } ?>

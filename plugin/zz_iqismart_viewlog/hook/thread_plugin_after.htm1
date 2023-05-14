@@ -1,0 +1,99 @@
+
+<style>
+.psth {
+    margin: 2em 0 2em -18px;
+    padding: 5px 45px 5px 20px;
+    width: 240px;
+    background: #FFF4DD url(plugin/zz_iqismart_viewlog.img/arw.gif) no-repeat 100% 50%;
+    color: #F26C4F;
+    font-size: 14px;
+}
+  .rate dt {
+    float: left;
+    padding-top: 7px;
+    width: 100px;
+    text-align: center;
+}
+  .rate dt strong {
+    padding: 12px 8px;
+    height: 46px;
+    font-size: 24px;
+    background: #FFF4DD;
+}
+  .pcb strong {
+    font-weight: 700;
+}
+  .rate dt strong a, .rate dt strong a em {
+    line-height: 48px;
+    height: 48px;
+    color: #F26C4F;
+}
+  .rate dt p {
+    padding-top: 10px;
+}
+  .rate dd {
+    margin-left: 0px;
+   
+}
+  .cl {
+    zoom: 1;
+}
+  .rate dd ul li {
+    float: left;
+    overflow: hidden;
+    margin: 0 4px;
+    width: 67px;
+    height: 84px;
+    text-align: center;
+}
+  .mbn {
+    margin-bottom: 5px !important;
+}
+  .mtn {
+    margin-top: 5px !important;
+}
+  .avt img {
+    padding: 2px;
+    width: 55px;
+    height: 55px;
+ 
+}
+  .cl:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+  .rate a{
+  	color: #333;text-decoration: none;font-size:12px !important;font-weight:500
+  }
+</style>
+
+<?php if(!empty($viewlog['title'])) { ?>
+ 
+<?php  } ?>
+<dl id="ratelog_27208973" class="rate">
+  <dt>
+    <strong><a style="font-size: 1.7rem !important;" href="javascript:void(0)" ><?php echo $logs_count?></a></strong>
+    <p><a style="" href="forum.php?mod=misc&amp;action=viewratings&amp;tid=3459723&amp;pid=27208973" onclick="showWindow('viewratings', this.href)"><?php echo $viewlog['title'];?></a></p>
+  </dt>
+  <dd>
+    <div id="post_rate_27208973"></div>
+      <ul class="cl">
+        <?php
+                foreach($logs as $log):
+                    $_user = user_read_cache($log['uid']);
+                ?>
+        <li>
+          <p id="rate_27208973_403779" class="mtn mbn" initialized="true"><a href="<?php echo url("user-$_user[uid]");?>" target="_blank" class="avt">
+            <img src="<?php echo $_user['avatar_url'];?>"></a></p>
+          <p><a href="<?php echo url("user-$user[uid]");?>" target="_blank"><?php echo $_user['username'];?></a></p>
+        </li>
+       <?php
+                endforeach;
+                ?>
+      </ul>
+  </dd>
+</dl>
+ 

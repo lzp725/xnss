@@ -1,0 +1,8 @@
+<script>
+    var jtime_check=$("#time_check"); var jtime_input=$("#time_input");
+    jtime_check.on('click',function(){
+        if(jtime_check.prop('checked')) jtime_input.fadeIn();
+        else jtime_input.fadeOut();
+    });
+    jtime_input.fadeOut();
+</script>

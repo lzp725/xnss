@@ -1,0 +1,28 @@
+ 
+<?php
+$tagCloud = cache_get('tagCloud1');
+if(empty($tagCloud)){
+// 缓存10分钟更新一次(标签过少时,删标签后未及时更新可能出现标签不存在)
+$tagCloud = db_find('git_tags', array(), array('link'=>-1), 1, 100);
+cache_set('tagCloud1', $tagCloud, 600);
+}
+?>
+ 
+<script type="text/javascript" src="/plugin/zz_iqismart_tagcloud/view/js/jqcloud-1.0.4.js"></script>
+<link rel="stylesheet" type="text/css" href="/plugin/zz_iqismart_tagcloud/view/css/jqcloud.css" />
+<script>
+  var word_array = [];
+  
+    <?php foreach ( $tagCloud as $k ){ 
+    	$url = url("tag-".$k['tagid']);
+     	echo 'word_array.push({text: "'.$k['name'].'", weight:  '.$k['link'].',link:"'.$url.'"});';
+    ?>
+    <?php } ?>
+          
+      
+  
+  $(function(){
+    $("#taghot").hide();
+  	 $("#tagcloud1").jQCloud(word_array,{removeOverflowing:false,center:{x: 130, y: 110}});
+  })
+</script>

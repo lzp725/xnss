@@ -1,0 +1,11 @@
+{
+    "name": "APP底部栏",
+    "brief": "这款插件来自于Xiuno BBS坛友@风子 所给出实现的功能，而做出了插件形式。<a style='font-size:12px;' href='https://bbs.xiuno.com/thread-150338.htm' target='_blank'>见帖子<a>，由@聂云风情 编辑整理打包成插件，需要手动编辑插件hook目录下的footer_nav_after.htm文件内容，有心的朋友，可以真正做出一个完整的插件。<br/>由<a style='font-weight:600;color:red;' href='https://www.zaesky123.top' target='_blank'>NOTEWEB</a>重制优化。",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

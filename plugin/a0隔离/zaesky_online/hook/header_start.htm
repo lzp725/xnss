@@ -1,0 +1,22 @@
+<?php
+			$arronline=assoc_unique(online_list_cache(),'uid');//获取在线用户信息并且根据uid值去重复
+
+$rew=$conf['url_rewrite_on']==0 ? '?':'';//伪静态
+
+function assoc_unique($arr, $key) {  //根据指定的key值为数组去重
+        $tmp_arr = array();  
+        foreach($arr as $k => $v) {  
+            if(in_array($v[$key], $tmp_arr)) {  
+                unset($arr[$k]);  
+            } else {  
+                $tmp_arr[] = $v[$key];  
+            }  
+        }  
+        sort($arr);  
+        return $arr;  
+} 
+function getlistn(){//返回修罗主程序所处相对目录 
+return substr($_SERVER['PHP_SELF'],0,strlen($_SERVER['PHP_SELF'])-10);   
+}
+                    
+                    ?>

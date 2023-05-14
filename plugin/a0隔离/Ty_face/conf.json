@@ -1,0 +1,10 @@
+{
+    "name": "表情回复插件",
+    "brief": "在快速回复栏，可以使用表情来快速回复<br/>原 <a href='https://tenyet.com.cn'>腾悦兴趣交流社区</a> 修改适配。<br/>现 <a href='https://www.zaesky123.top'>NOTEWEB</a> 优化。",
+    "version": "1.0",
+    "bbs_version": "4.0.4",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "dependencies": []
+}

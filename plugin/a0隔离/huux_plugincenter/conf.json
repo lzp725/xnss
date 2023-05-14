@@ -1,0 +1,11 @@
+{
+    "name": "大白插件",
+    "brief": "高品质插件，在线安装升级。1.2版本：增加列表展示",
+    "version": "1.2",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

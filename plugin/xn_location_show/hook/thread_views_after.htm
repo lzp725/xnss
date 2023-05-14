@@ -1,0 +1,8 @@
+<?php if (!empty($user) && $thread['location_tr'] != '0' ) { ?>
+       <span class="text-grey">&nbsp;<?php echo $thread['location_tr']; ?></span>
+ <?php }  ?> 
+ <?php if (!empty($user) && $thread['location_tr'] == '0' ) { ?>
+       <span class="text-grey">&nbsp;<?php echo get_ip_city_thread($thread['tid'], $thread['userip']); ?></span>
+ <?php }  ?> 
+ 
+   

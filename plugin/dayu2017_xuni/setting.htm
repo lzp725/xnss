@@ -1,0 +1,56 @@
+<?php include _include(ADMIN_PATH.'view/htm/header.inc.htm');?>
+<div class="col-lg-12">
+	<div class="row">
+		<div class="col-lg-4"><p class="m-y-xs text-muted fl"><i class="icon-cog m-r-sm"></i>点击倍率<span class="m-l-xs label label-success">v1.5</span></p></div>
+	</div>
+    <div class="card">
+	<div class="card-block">
+	<form action="<?php echo url("plugin-setting-dayu2017_xuni");?>" method="post" id="form">
+	
+		
+	<div class="form-group row">
+			<div class="col-sm-2">
+				请设置需要设置的点击倍数(注意一定要填写数字)
+			</div>
+			<div class="col-sm-10">
+			<input type="text" name="beishu" value="<?php echo $beishu; ?>">
+			</a>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-sm-2 form-control-label"></label>
+			<div class="col-sm-2 m-b-sm" style="margin-left:120px;">
+				<button type="submit" class="btn btn-primary btn-block" id="submit" data-loading-text="<?php echo lang('submiting');?>..."><?php echo lang('confirm');?></button>
+			</div>
+			<div class="col-sm-2 m-b-sm" style="margin-left:120px;">
+				<a role="button" class="btn btn-secondary btn-block" href="javascript:history.back();"><?php echo lang('back');?></a>
+			</div>
+		</div>
+</form>
+	
+    </div>
+    </div>
+</div>
+
+<?php include _include(ADMIN_PATH.'view/htm/footer.inc.htm');?>
+<script>
+var jform = $("#form");
+var jsubmit = $("#submit");
+var referer = '<?php echo url("plugin-setting-dayu2017_xuni");?>';
+jform.on('submit', function(){
+	jform.reset();
+	jsubmit.button('loading');
+	var postdata = jform.serialize();
+	$.xpost(jform.attr('action'), postdata, function(code, message) {
+		if(code == 0) {
+			$.alert(message);
+			jsubmit.text(message).delay(1000).button('reset').location(referer);
+		} else {
+			$.alert('提交失败');
+			jsubmit.button('reset');
+		}
+	});
+	return false;
+});
+</script>

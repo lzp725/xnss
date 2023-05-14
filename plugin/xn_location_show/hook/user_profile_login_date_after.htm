@@ -1,0 +1,6 @@
+<?php if($gid != 1) { ?>
+<br>
+<?php } ?>
+<?php if (!empty($user)) { ?>
+<span class="text-muted"><?php echo('最后登陆ip属地');?>：</span><?php echo get_ip_city_userloginlocation($_user['login_ip']); ?><br>
+<?php } ?>

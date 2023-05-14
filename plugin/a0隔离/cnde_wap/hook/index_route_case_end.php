@@ -1,0 +1,1 @@
+case 'wap': include APP_PATH.'plugin/cnde_wap/wap.php'; break;

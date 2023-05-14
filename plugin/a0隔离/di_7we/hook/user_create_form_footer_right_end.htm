@@ -1,0 +1,42 @@
+<small id="fans_code" data-toggle="modal" data-target="#myModal"><a href="#">如何获取用户码？</a></small>
+<?php
+	$_7we=kv_get('7we');
+
+
+?>
+
+
+  <!-- 模态框 -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+
+        <!-- 模态框头部 -->
+        <div class="modal-header">
+          <h4 class="modal-title">获取用户码</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- 模态框主体 -->
+        <div class="modal-body" style="text-align: center;">
+          <?php echo $_7we['lead'];  ?>
+          <hr>
+         <img  src="<?php echo trim($_7we['QRcode']);  ?>" alt="公众号二维码" >
+
+        </div>
+
+        <!-- 模态框底部 -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+        <!-- 模态框主体 -->
+        <div class="modal-body" style="text-align: center;">
+          <?php echo $_7we['lead'];  ?>
+          <hr>
+          <img class="img-fluid" src=" <?php echo $_7we['QRcode'];  ?>" alt="Chania" >
+
+        </div>

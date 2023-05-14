@@ -1,0 +1,10 @@
+{
+    "name": "悬赏",
+    "brief": "发帖时设置悬赏金额<br>插件由<a href='https://www.jbxiaozi.com' target='_blank'>https://www.jbxiaozi.com</a>制作",
+    "version": "1.0",
+    "bbs_version": "4.0.3",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "dependencies": []
+}

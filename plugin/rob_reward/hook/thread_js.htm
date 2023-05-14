@@ -1,0 +1,11 @@
+<script>
+        $('.rob-answer').click(function () {
+            $pid =  $(this).parent().parent().parent().parent().attr("data-pid");
+            $tid = window.location.href.match("([0-9]+)\.htm")[1];
+            $.post('?post-reward.htm', {'pid':$pid,'tid':$tid}, function (r) {
+                alert(r.message);
+                location.reload();
+            }, 'json')
+        })
+
+</script>

@@ -1,0 +1,1 @@
+case '7we': include _include(APP_PATH.'plugin/di_7we/post.php'); break;

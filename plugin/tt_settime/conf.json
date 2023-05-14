@@ -1,0 +1,11 @@
+{
+    "name": "时光机",
+    "brief": "版主、超级版主、论坛管理员可以修改发帖、回帖时间、帖子点击次数(查看数量)！",
+    "version": "1.05",
+    "bbs_version": "4.0.4",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

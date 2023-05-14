@@ -1,0 +1,6 @@
+<?php $notich = kv_get('xiunobbs_cn_notice');?>
+
+<div id="notich" class="alert <?php echo $notich['style'];?> alert-dismissible fade show" role="alert">
+ <?php echo htmlspecialchars_decode($notich['content']);?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span id="notich_x" aria-hidden="true">×</span></button>
+</div>

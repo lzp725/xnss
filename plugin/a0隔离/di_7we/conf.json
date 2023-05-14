@@ -1,0 +1,11 @@
+{
+    "name": "公众号接入-柒微",
+    "brief": "1.微信关注公众号获取用户码注册,防灌水注册次<br>2.回复口令即可获取最新帖子、热门帖子<br>主要作用：防恶意灌水注册，公众号增加人气",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 1,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

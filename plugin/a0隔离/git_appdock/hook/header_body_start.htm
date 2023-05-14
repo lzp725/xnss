@@ -1,0 +1,74 @@
+<div class="position-fixed w-100 header_fiexd bottom-nav" style="width: 100%; height: 55px; bottom: 0; z-index: 1000;border-top: 1px solid rgb(239, 239, 239);">
+
+    <div class="row mx-0 text-center align-items-center" style="height: 55px;">
+        <a href="./" class="col" style="max-width: 20%;">
+            <div>
+                <img src="https://s1.ax1x.com/2020/03/18/8wDlpd.png" alt="8wDlpd.png" border="0" width="25px"/>
+            </div>
+            <div class="nav_font">
+                首页
+            </div>
+        </a>
+        <a  class="col" data-toggle="modal" data-target="#forum" style="max-width: 20%;">
+            <div>
+                <img src="https://s1.ax1x.com/2020/03/18/8wDFp9.png" alt="8wDFp9.png" border="0" width="25px"/>
+            </div>
+            <div class="nav_font">
+                分类
+            </div>
+        </a>
+        <a href="<?php echo url('thread-create-'.$fid);?>" class="col" style="max-width: 20%;">
+            <div>
+                <img src="https://s1.ax1x.com/2020/03/18/8wDEOx.png" alt="8wDEOx.png" border="0" width="40px"/>
+            </div>
+        </a>
+        <a href="<?php echo url("my-notice");?>" class="col" style="max-width: 20%;">
+            <div>
+                <img src="https://s1.ax1x.com/2020/03/18/8wDMfH.png" alt="8wDMfH.png" border="0" width="25px"/>
+				<?php if($user['unread_notices'] > 0){ ?>
+      <span class=" unread" id="nav-usernotice-unread-notices" style="position:absolute;font-size:10px;color:#c6303e;"><i class="icon-circle"></i></span>
+<?php  } ?>
+            </div>
+            <div class="nav_font">
+                消息
+            </div>
+        </a>
+        <a href="<?php echo url("my");?>" class="col" style="max-width: 20%;">
+            <div>
+                <img src="https://s1.ax1x.com/2020/03/18/8wDKte.png" alt="8wDKte.png" border="0" width="25px"/>
+            </div>
+            <div class="nav_font" >
+                我的
+            </div>
+        </a>
+    </div>
+</div> 
+<?php if(empty($uid) & in_array($route, array('bbs', 'forum', 'thread', 'post','index'))) { ?>
+	<div  class="position-fixed header_fiexd text-center hidden-lg" style="width: 100%; height: 100px; bottom: 0; z-index: 999;"><a href="<?php echo url('user-login');?>" role="button" class="btn btn-primary"  style="box-shadow: 0 1px 3px rgba(26,26,26,.1);
+">登录 / 注册</a></div>
+<?php  }?>
+
+<div class="modal fade" id="forum" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">分类导航</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group list-group-flush">
+									
+									<?php foreach($forumlist_show as $_forum) { ?>
+					<!--{hook header_nav_forumlist_loop_start.htm}-->
+					<li class="nav-item hidden-lg   justify-content-between align-items-center" fid="<?php echo $_forum['fid'];?>" data-active="fid-<?php echo $_forum['fid'];?>">
+						<a class="nav-link" href="<?php echo url("forum-$_forum[fid]");?>"><i class="icon-comments d-md-none"></i> <?php echo $_forum['name'];?><span style="float:right"><span class="text-grey">主题：</span><span class="badge badge-primary"><?php echo $_forum['threads'];?></span> <span class="text-grey">讨论：</span><span class="badge badge-danger"><?php echo $_forum['todayposts'];?></span></span></a>
+					</li>
+					<!--{hook header_nav_forumlist_loop_end.htm}-->
+					<?php } ?>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>  

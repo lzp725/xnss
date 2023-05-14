@@ -1,0 +1,11 @@
+{
+    "name": "回帖快捷at功能",
+    "brief": "<b>功能：</b>在头像旁添加@Ta，实现点击即可在评论框中快速插入@信息<br /><b>作者：</b>张益达<br /><b>声明：</b>本插件灵感与核心代码均来源于虎绿林论坛。",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

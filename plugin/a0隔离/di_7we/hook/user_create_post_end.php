@@ -1,0 +1,1 @@
+user_update($uid, array('fans_code'=>$fans_code));

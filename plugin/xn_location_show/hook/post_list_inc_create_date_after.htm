@@ -1,0 +1,8 @@
+<?php if (!empty($user) && $_post['location_post'] != '0' ) { ?>
+       <span class="text-grey">&nbsp;<?php echo $_post['location_post']; ?></span>
+ <?php }  ?> 
+ <?php if (!empty($user) && $_post['location_post'] == '0' ) { ?>
+       <span class="text-grey">&nbsp;<?php echo get_ip_city_post($_post['pid'], $_post['userip']); ?></span>
+ <?php }  ?> 
+ 
+   

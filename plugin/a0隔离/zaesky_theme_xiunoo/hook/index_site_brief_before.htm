@@ -1,0 +1,38 @@
+<?php if($uid){ $today0 = strtotime(date('Y-m-d',time()))-1;$num=0; ?>
+	<?php $no_cache_user = user_read($uid);
+	$progress=100; $max=1; $now=$no_cache_user['credits'];
+	if($no_cache_user['gid']>100){
+		foreach($grouplist as $group) {
+			if($group['gid'] < 100) continue;
+			$n = $no_cache_user['credits'] ;
+			if($n > $group['creditsfrom'] && $n <= $group['creditsto']) {
+				$max=$group['creditsto'];
+				if($no_cache_user['groupname']!=$group['name']) {
+					$no_cache_user['groupname']=$group['name'];
+					user_update_group($uid);
+				}
+				break;
+			}
+		}
+		$progress = (int)($now/$max * 100.0);
+	}
+	?>
+	<div class="card">
+		<div class="rounded-top" id="bgcolor">
+			<canvas id="canvas"></canvas>
+		</div>
+		<div class="card-body" style="position: relative;margin-top: -60px;">
+			<div class="text-center">
+				<img class="avatar-4 shadow-sm" src="<?php echo $user['avatar_url'];?>">
+				<div class="font-weight-bold my-3"><?php echo $user['username'];?></div>
+			</div>
+					<div class="d-flex justify-content-between">
+						<span>等级：</span>
+						<div class="badge badge-pill badge-danger small"><span class=" d-block" style="margin-top: 1.5px;"><?php echo $user['groupname'];?></span></div>
+					</div>
+					<div class="progress mt-2" style="height: 5px;"><div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" style="width: <?php echo $progress;?>%;" aria-valuenow="<?php echo $progress;?>" aria-valuemin="0" aria-valuemax="100"></div></div>
+				</div>
+	</div>
+	<?php } ?>
+		
+<script src="<?php echo 'plugin/zaesky_theme_xiunoo/view/js/background.min.js';?>"></script>

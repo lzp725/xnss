@@ -1,0 +1,56 @@
+
+
+<script src="/plugin/xiunobbs_cn_dark/js/jquery.min.js"></script>
+<script src="/plugin/xiunobbs_cn_dark/js/jquery.cookie.min.js"></script>
+
+
+<script type="text/javascript">
+	function loadjscssfile(filename, filetype) {
+
+		if (filetype == "js") {
+			var fileref = document.createElement('script')
+			fileref.setAttribute("type", "text/javascript")
+			fileref.setAttribute("src", filename)
+		} else if (filetype == "css") {
+			var fileref = document.createElement("link")
+			fileref.setAttribute("rel", "stylesheet")
+			fileref.setAttribute("type", "text/css")
+			fileref.setAttribute("href", filename)
+		}
+		if (typeof fileref != "undefined")
+			document.getElementsByTagName("head")[0].appendChild(fileref)
+	}
+
+	function removejscssfile(filename, filetype) {
+		var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none"
+		var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none"
+		var allsuspects = document.getElementsByTagName(targetelement)
+		for (var i = allsuspects.length; i >= 0; i--) {
+			if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(
+					filename) != -1) {
+				allsuspects[i].parentNode.removeChild(allsuspects[i])
+			}
+		}
+	}
+
+
+
+	function theme() {
+		Theme = $.cookie('Theme');
+		if (Theme == "" | Theme == "null" | Theme == null | Theme == undefined) {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				$.cookie("Theme", "1", {
+					expires: 365
+				});
+			}
+		}
+
+		if (Theme != "1") {
+			removejscssfile("/plugin/xiunobbs_cn_dark/css/darktheme.css", "css")
+		} else {
+			loadjscssfile("/plugin/xiunobbs_cn_dark/css/darktheme.css", "css")
+
+		}
+	}
+	theme()
+</script>

@@ -1,0 +1,8 @@
+<?php
+			$arronline=assoc_unique(online_list_cache(),'uid');
+			foreach($arronline as $online_user) {
+			if($online_user['uid'] == $_thread['uid']){
+			echo "<i class='icon icon-circle position-absolute text-success' style='margin-top:1.7rem;margin-left:1.6rem;'></i>";
+			} 
+		}
+         ; ?>

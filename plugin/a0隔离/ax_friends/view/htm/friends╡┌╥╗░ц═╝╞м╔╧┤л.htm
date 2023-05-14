@@ -1,0 +1,185 @@
+<?php include _include(APP_PATH.'view/htm/header.inc.htm');?>
+<!--{hook index_start.htm}-->
+<?php $p = is_phone();?>
+<div class="row">
+	<div class="col-lg-9 main">
+		<!--{hook index_main_start.htm}-->
+		
+
+
+
+			<div class="panel panel-default card-body card">
+				<div class="clearfix">
+					<h5>发布说说</h5>               
+				</div>
+
+				<form id="form" action="<?php echo url("friends-add");?>" method="post">
+					<input type="hidden" name="uid" value="<?php echo $uid;?>">
+					<div class="form-group field-md-input required">
+						<textarea id="friends" class="form-control" name="message" rows="5" placeholder="<?php echo $tips;?>" data-at-topic="" aria-required="true" <?php if(!$user) echo 'readonly'?>></textarea>
+						<div class="help-block"></div>
+					</div>
+					<div class="form-group">
+						<a href="javascript:;" class="file">上传图片<input type="file"  accept=".jpg,.jpeg,.png,.gif,.bmp" class="form-control" name="icon" value="" data-assoc="img" placeholder="<?php echo lang('forum_icon');?>" id="fileUpload"/>
+						
+						</a><div id="list-view"></div>
+						<div class="pull-right">
+							<button type="submit" id="submit" class="btn btn-primary">发布</button>           
+						</div>
+					</div>
+				</form>
+       
+			</div>
+
+			<div class="card-body card">
+				<!--{hook index_threadlist_before.htm}-->	
+				<?php if($friends_list){foreach($friends_list as $v){?>	
+				<?php $_user = user_read_cache($v['uid'])?>      			
+					<div class="list-group-item item">
+						<div class="media">
+						    <div class="media-left">
+						        <a href="<?php echo url("user-$v[uid]")?>"><img class="avatar" src="<?php echo $_user['avatar_url'];?>" alt="<?php echo $_user['username'];?>"></a>    
+						    </div>
+						    <div class="media-body">
+						        <div class="small  username text-grey mr-1">
+						            <?php echo $_user['username'];?> • <span><?php echo humandate($v['create_date'])?></span>
+								
+								<?php if(!empty($user)){if($user['uid'] == $v['uid'] or $uid == 1) { ?>
+							        <div class="title-info pull-right">
+									<a href="javascript:void(0);" onclick="javascript:if(confirm( '确定要删除？')) href= '<?php echo url("friends-del-$v[friendsid]")?>'; else return;">删除</a> | <a href="#">修改</a>
+	        						</div>  
+	        						<?php }}?>      
+						        </div>
+
+						        <div class="media-heading">
+						            <p><?php echo $v['message'];?></p>
+						            <?php if($v['friends_pic']){?>
+							            <?php if($p == 1){?>
+									<p><a href="<?php echo $v['friends_pic']?>"><img src="<?php echo $v['friends_pic']?>"></a></p>
+							            <?php }else{?>
+						            	    	<p><img src="<?php echo $v['friends_pic']?>" id="img1"></p>
+						            	    <?php }?>
+						            <?php }?>
+						        </div>
+							<div class="title-info pull-right">
+            							<a class="" href="#" data-do="like" data-id="891" data-type="tweet"><i class="icon icon-thumbs-o-up"></i> <span>0 </span></a>
+        						</div>
+						    </div>
+						</div>
+					</div>
+				<?php }}?>
+				<!--{hook index_threadlist_after.htm}-->
+			</div>
+		
+		<!--{hook forum_page_before.htm}-->
+		<nav class="my-3"><ul class="pagination justify-content-center flex-wrap"><?php echo $pagination; ?></ul></nav>
+		<!--{hook forum_page_after.htm}-->
+	</div>
+	<div class="col-lg-3 d-none d-lg-block aside">
+		<a role="button" class="btn btn-primary btn-block mb-3" href="<?php echo url('thread-create-'.$fid);?>"><?php echo lang('thread_create_new');?></a>
+		<!--{hook index_site_brief_before.htm}-->
+		<div class="card card-site-info">
+			<!--{hook index_site_brief_start.htm}-->
+			<div class="m-3">
+				<h5 class="text-center"><?php echo $conf['sitename'];?></h5>
+				<div class="small line-height-3"><?php echo $conf['sitebrief'];?></div>
+			</div>
+			<div class="card-footer p-2">
+				<table class="w-100 small">
+					<tr align="center">
+						<td>
+							<span class="text-muted"><?php echo lang('threads');?></span><br>
+							<b><?php echo $runtime['threads'];?></b>
+						</td>
+						<td>
+							<span class="text-muted"><?php echo lang('posts');?></span><br>
+							<b><?php echo $runtime['posts'];?></b>
+						</td>
+						<td>
+							<span class="text-muted"><?php echo lang('users');?></span><br>
+							<b><?php echo $runtime['users'];?></b>
+						</td>
+						<?php if($runtime['onlines'] > 0) { ?>
+						<td>
+							<span class="text-muted"><?php echo lang('online');?></span><br>
+							<b><?php echo $runtime['onlines'];?></b>
+						</td>
+						<?php } ?>
+					</tr>
+				</table>
+			</div>
+			<!--{hook index_site_brief_end.htm}-->
+		</div>
+		<!--{hook index_site_brief_after.htm}-->
+	</div>
+</div>
+
+
+
+﻿<div id="ShowImage_Form" class="modal hide">         
+           <div class="modal-body">
+           	<button data-dismiss="modal" class="close" type="button">x</button>
+            <div id="img_show"></div>
+        </div>
+</div>
+<!--{hook index_end.htm}-->
+
+<?php include _include(APP_PATH.'view/htm/footer.inc.htm');?>
+<script>
+var jform = $("#form");
+var jsubmit = $("#submit");
+var referer = '<?php echo url("friends");?>';
+jform.on('submit', function(){
+	jform.reset();
+	jsubmit.button('loading');
+	var postdata = jform.serialize();
+	$.xpost(jform.attr('action'), postdata, function(code, message) {
+		if(code == 0) {
+			$.alert(message);
+			jsubmit.text(message).delay(1000).button('reset').location(referer);
+		}else if(code == 2) {
+			$.alert(message);
+		}else if(code == 3) {
+			$.alert(message);
+		} else {
+			$.alert('提交失败');
+			jsubmit.button('reset');
+		}
+	});
+	return false;
+});
+//上传64位
+jform.base64_encode_file();
+$('#nav li[fid="friends"]').addClass('active');
+</script>
+<script type="text/javascript">
+//图片放大
+$("#img1").click(function(){
+            var wValue = 2 * $(this).width();  
+            var hValue = 2 * $(this).height();  
+            var w = $(this).width() / 2;  
+            var h = $(this).height() / 2; 
+            if($(this).hasClass('ax_img')){
+			$(this).removeClass('ax_img');
+			$(this).animate({width: w, height: h, left:"0px", top:"0px"}, 1000 );  
+
+		}else{
+			$(this).addClass('ax_img');
+			$(this).animate({width: wValue,height: hValue,left:("-"+(0.5 * $(this).width())/2),top:("-"+(0.5 * $(this).height())/2)}, 1000);
+		}           
+        })         
+</script>
+<script>  
+            $('#fileUpload').change(function() {  
+                return change(this, 'file-one');  
+            });  
+  
+            function change(obj, itemId) {  
+                var a = URL.createObjectURL(obj.files[0]);  
+                var urla = obj.files[0];  
+                var template = '<img src="'+a+'" height="100%" >';  
+                $('#list-view').append(template.replace('{src}', URL.createObjectURL(obj.files[0])));  
+            }  
+        </script> 
+<!--{hook index_js.htm}-->
+

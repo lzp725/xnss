@@ -1,0 +1,32 @@
+
+
+修改上传图片的质量
+var qulity = options.qulity || 0.9; // 图片质量, 1 为无损
+
+
+----------------------------------------------------------------
+
+
+透明PNG图片上传后背景变黑色的解决办法
+
+问题描述：PNG图片上传后，透明背景变成黑色。
+
+第一步、打开view/js/xiuno.js文件，找到1198行 把
+
+var filetype = options.filetype || xn.image_file_type(file_base64_data);//xn.base64_data_image_type(file_base64_data);
+注释掉，并在下面增加一行
+
+var filetype = xn.image_file_type(file_base64_data);//xn.base64_data_image_type(file_base64_data);
+第二步、找到1308行 找到
+
+if(filetype == 'jpg') filetype = 'jpeg';
+在下面增加一行
+
+if(filetype == 'png') filetype = 'png';
+保存文件。
+
+清空后台缓存，并Ctrl+F5强制刷新浏览器缓存，透明PNG图片上传后背景变黑色的问题完美解决。
+
+
+----------------------------------------------------------------
+

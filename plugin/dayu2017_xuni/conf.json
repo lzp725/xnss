@@ -1,0 +1,11 @@
+{
+    "name": "虚拟点击插件_大鱼插件",
+    "brief": "你设置多少,单次访问计数就会增加多少.",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

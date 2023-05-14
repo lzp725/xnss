@@ -1,0 +1,17 @@
+<?php 
+if($_thread['hlight'] > 0) { 
+    $huux_hlight = setting_get('huux_hlight');
+	switch($_thread['hlight']){
+		case 1 : $_thread['subject'] = '<span class="huux_thread_hlight_style1">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s1n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 2 : $_thread['subject'] = '<span class="huux_thread_hlight_style2">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s2n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 3 : $_thread['subject'] = '<span class="huux_thread_hlight_style3">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s3n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 4 : $_thread['subject'] = '<span class="huux_thread_hlight_style4">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s4n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 5 : $_thread['subject'] = '<span class="huux_thread_hlight_style5">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s5n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 6 : $_thread['subject'] = '<span class="huux_thread_hlight_style6">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s6n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 7 : $_thread['subject'] = '<span class="huux_thread_hlight_style7">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s7n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 8 : $_thread['subject'] = '<span class="huux_thread_hlight_style8">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s8n'].'] ':'').$_thread['subject'].'</span>';break;
+		case 9 : $_thread['subject'] = '<span class="huux_thread_hlight_style9">'.($huux_hlight['hlight_n_io'] ? '['.$huux_hlight['hlight_s9n'].'] ':'').$_thread['subject'].'</span>';break;
+		
+		default : $_thread['subject'] = $_thread['subject'];
+	}
+} ?>

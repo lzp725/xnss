@@ -1,0 +1,26 @@
+<?php include _include(APP_PATH.'view/htm/header.inc.htm');
+$_pid = param(2,0); $_tid=param(3,0);
+if($_pid==0 || !$uid || empty($_tid)) die();
+if(isset($gid) AND !$group['allowTime'] ) die();
+$db = db_find_one('post',array('pid'=>$_pid));
+$default_time = $db['create_date'];
+?>
+    <div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">发帖时间</span></div>
+    <input maxlength="17" type="text" class="form-control" name="timestamp" id="timestamp" value="<?php echo date('Ymd H:i:s',$default_time);?>"/></div>
+    <div style="text-align: center;display:block;width:100%"><button type="button" class="btn btn-outline-primary" id="time_submit">提交</button></div>
+<?php include _include(APP_PATH.'view/htm/footer.inc.htm');?>
+<script ajax-eval="true">
+    var jsubmit=$("#time_submit"); var jinput = $("#timestamp");
+    jsubmit.on('click',function(){
+        if(jinput.val().length!=17){alert('时间格式不正确');return false;}
+        jsubmit.button('loading');
+        var postdata='stamp='+jinput.val()+'&pid='+'<?php echo $_pid;?>'+'&tid='+'<?php echo $_tid;?>';
+        $.xpost("<?php echo url('post-tt_settime_p');?>",postdata,function(code,message){
+            if(code!=0) alert(message);
+            else location.reload();
+        });
+    });
+    args.jmodal.on('hide.bs.modal', function () {
+        location.reload();
+    });
+</script>

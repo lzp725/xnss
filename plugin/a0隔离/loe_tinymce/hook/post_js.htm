@@ -1,0 +1,15 @@
+<script src='plugin/loe_tinymce/js/tinymce.min.js'></script>
+<script src='plugin/loe_tinymce/js/jquery.tinymce.min.js'></script>
+<script src='plugin/loe_tinymce/js/tinymce-bbs.js'></script>
+<script>
+    if (typeof jform != 'unefined') jform.find('[name="doctype"]').val(0);
+    var loe_form = $('#message').parents('form'); //获取文本框message所在form表单
+    loe_form.on('submit', function() {
+        tinyMCE.editors['message'].save();
+    }); //给submit挂载同步事件
+    var loe_data = $._data(loe_form[0], 'events').submit; //获取form表单submit事件列表
+    loe_data.splice(0, 0, loe_data.pop()); //把同步事件优先级设到最前
+
+    // var isdirty = tinymce.Editor['message'].isDirty();
+    // console.log(isdirty);
+</script>

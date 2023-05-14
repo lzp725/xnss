@@ -1,0 +1,1 @@
+!empty($arr['rob_reward']) AND $thread['rob_reward'] = $arr['rob_reward'];

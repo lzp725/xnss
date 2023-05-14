@@ -1,0 +1,10 @@
+{
+    "name": "深色模式",
+    "brief": "<a href='//xiunobbs.cn' target='_blank' style='display: block; background-color:#c6303e;color: #FFFFFF;'>xiunobbs.cn站长交流论坛</a>首次访问根据浏览器或系统的深浅色模式自动切换，部分主题或编辑器需要自行适配CSS代码！",
+    "version": "1.0",
+    "bbs_version": "4.0",
+    "installed": 1,
+    "enable": 0,
+    "hooks_rank": [],
+    "dependencies": []
+}

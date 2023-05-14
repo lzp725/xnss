@@ -1,0 +1,10 @@
+<?php if($thread['rob_reward'] != 0 AND ($uid == $thread['uid'] OR $uid == 1)) {
+if(empty($thread['rob_reward_answer'])){?>
+<a href="javascript:void(0)" class="post_update mr-3 rob-answer">结贴</a>
+<?php
+}}
+if( $thread['rob_reward_answer'] == $_post['pid'] ){ ?>
+
+    <span style="background-image:url(plugin/rob_reward/img/rewardsmall.gif); background-repeat:no-repeat;" class="mr-2"><span style="margin-left:1.2rem" class="text-warning small"><?php echo $thread['rob_reward'] ?>元</span></span>
+
+<?php } ?>

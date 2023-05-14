@@ -1,0 +1,14 @@
+<script>
+    $(function(){
+        if($(":radio[name='time_machine']:checked").val()==1)
+            $('#time_machine_div').fadeIn();
+        else
+            $('#time_machine_div').fadeOut();
+        $(":radio[name='time_machine']").click(function(){
+            if($(this).val()==1)
+                $('#time_machine_div').fadeIn();
+            else
+                $('#time_machine_div').fadeOut();
+        })
+    });
+</script>

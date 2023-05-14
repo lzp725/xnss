@@ -1,0 +1,77 @@
+<?php include _include(ADMIN_PATH.'view/htm/header.inc.htm');?>
+
+<div class="row">
+	<div class="col-lg-10 mx-auto">
+	<!--<div class="col-lg-10 offset-lg-1">-->
+		<div class="card">
+				  <div class="card-header">首页公告</div>
+			<div class="card-body">
+			
+				<form action="<?php echo url("plugin-setting-xiunobbs_cn_notice");?>" method="post" id="form">
+				
+				<div class="alert <?php echo $kv['style'];?>">
+				
+				 <label class="custom-input custom-radio mr-3 alert alert-warning">
+					<input type="radio" name="style" value="alert-warning" <?php if($kv['style'] == 'alert-warning') { ?> checked="checked" <?php } ?>> 浅黄
+				</label>
+				 <label class="custom-input custom-radio mr-3 alert alert-danger">
+					<input type="radio" name="style" value="alert-danger" <?php if($kv['style'] == 'alert-danger') { ?> checked="checked" <?php } ?>> 浅红
+				</label>
+				 <label class="custom-input custom-radio mr-3 alert alert-dark">
+					<input type="radio" name="style" value="alert-dark" <?php if($kv['style'] == 'alert-dark') { ?> checked="checked" <?php } ?>> 灰色
+				</label>
+				<label class="custom-input custom-radio mr-3 alert alert-primary">
+					<input type="radio" name="style" value="alert-primary" <?php if($kv['style'] == 'alert-primary') { ?> checked="checked" <?php } ?>> 蓝灰
+				</label>
+				<label class="custom-input custom-radio mr-3 alert alert-info">
+					<input type="radio" name="style" value="alert-info" <?php if($kv['style'] == 'alert-info') { ?> checked="checked" <?php } ?>> 浅蓝
+				</label>
+				<label class="custom-input custom-radio mr-3 alert alert-success">
+					<input type="radio"  name="style" value="alert-success" <?php if($kv['style'] == 'alert-success') { ?> checked="checked" <?php } ?>> 浅绿
+				</label>
+				</div>		
+				
+				<div class="card-body">
+					<div class="form-group row" >
+						<label class="col-sm-2 form-control-label">内容：</label>
+						<div class="col-sm-10">
+							<?php echo $input['content'];?>
+						</div>
+						
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 form-control-label" ></label>
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary btn-block" id="submit" data-loading-text="<?php echo lang('submiting');?>..."><?php echo lang('confirm');?></button>
+							<a role="button" class="btn btn-secondary btn-block m-t-1" href="javascript:history.back();"><?php echo lang('back');?></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php include _include(ADMIN_PATH.'view/htm/footer.inc.htm');?>
+
+<script>
+var jform = $("#form");
+var jsubmit = $("#submit");
+var referer = '<?php echo http_referer();?>';
+jform.on('submit', function(){
+	jform.reset();
+	jsubmit.button('loading');
+    var postdata = jform.serialize();
+	$.xpost(jform.attr('action'), postdata, function(code, message) {
+		if(code == 0) {
+			$.alert(message);
+			jsubmit.text(message).delay(2000).button('reset').location(referer);
+			return;
+		} else {
+			$.alert(message);
+			jsubmit.button('reset');
+		}
+	});
+	return false;
+});
+</script>

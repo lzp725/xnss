@@ -1,0 +1,13 @@
+<li class="nav-item username">
+	<a class="nav-link" id="theme" style="cursor:pointer;">
+	    <script src="/plugin/xiunobbs_cn_dark/js/jquery.cookie.min.js"></script>
+		<script type="text/javascript">
+		    Theme = $.cookie('Theme');
+			if (Theme != "1") {
+				document.write("<i class='icon-circle' style='margin-right: 4px;'></i>深色");
+			} else {
+				document.write("<i class='icon-circle-o' style='margin-right: 4px;'></i>浅色");
+			}
+		</script>
+	</a>
+</li>

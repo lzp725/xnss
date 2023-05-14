@@ -1,0 +1,26 @@
+<?php include _include(ADMIN_PATH.'view/htm/header.inc.htm');?>
+<div class="row"><div class="col-lg-10 mx-auto">
+<div class="card"><div class="card-body" ><h4>批量注册用户</h4>一行一个用户，用户名和密码用|隔开，注册速度取决于服务器速度，请不要一次性注册过多用户！<br><form action="<?php echo url('plugin-setting-tt_auto_reg');?>" method="post" id="form">
+<textarea class="form-control" name="content" style="height:32em;">
+test1|123456
+</textarea>
+<button type="submit" class="btn btn-primary btn-block" id="submit" data-loading-text="<?php echo lang('submiting');?>..."><?php echo lang('confirm');?></button></form>
+</div></div><div class="card"><div class="card-body" >
+    <h3>后期技术支持</h3>官方网站：http://www.6rabbit.com/ <a href="http://www.6rabbit.com"target="_blank" style="text-decoration: none">点击进入</a><br>官方QQ群：58911696（正常群）、77868272（只吹牛不讨论正事）</div></div></div></div>
+<?php include _include(ADMIN_PATH.'view/htm/footer.inc.htm');?>
+<script>
+    var jform = $("#form");var jsubmit = $("#submit");
+    jform.on('submit', function(){
+        jform.reset();jsubmit.button('loading'); var postdata = jform.serialize()+'&op=0';
+        $.xpost(jform.attr('action'), postdata, function(code, message) {
+            if(code == 0) {
+                $.alert(message);
+                setTimeout(function() {jsubmit.button('reset');}, 1000);
+                return;
+            } else {
+                $.alert(message);jsubmit.button('reset');
+            }
+        });
+        return false;
+    });
+</script>

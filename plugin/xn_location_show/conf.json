@@ -1,0 +1,11 @@
+{
+    "name": "IP归属地显示",
+    "brief": "<b>简介：</b>在帖子页面显示用户发帖时的ip归属地，个人页面显示用户最后登陆ip归属地，用户ip数据获取后保存在数据库，ip库为pconline。<br /><b>作者：</b>张益达<br /><b>提示：</b>安装后后台清理一下缓存稍等片刻；点击卸载插件可以清除数据库中所有已获得的用户ip归属地",
+    "version": "1.1",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "overwrites_rank": [],
+    "dependencies": []
+}

@@ -1,0 +1,29 @@
+<?php include _include(APP_PATH.'view/htm/header.inc.htm');
+$_tid=param(2,0);
+if(!$uid || empty($_tid)) die();
+if(isset($gid) AND !$group['allowTime'] ) die();
+$_thread=db_find_one('thread',array('tid'=>$_tid));
+$default_time = $_thread['create_date']; ?>
+    <div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">发帖时间</span></div>
+    <input maxlength="17" type="text" class="form-control" name="timestamp" id="timestamp" value="<?php echo date('Ymd H:i:s',$default_time);?>"/></div>
+    <div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">浏览次数</span></div>
+    <input maxlength="17" type="text" class="form-control" name="see_count" id="see_count" value="<?php echo $_thread['views'];?>"/></div>
+<div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">下载次数</span></div>
+    <input maxlength="17" type="text" class="form-control" name="down_count" id="down_count" value="0"/></div>
+    <div style="text-align: center;display:block;width:100%"><button type="button" class="btn btn-outline-primary" id="time_submit">提交</button></div>
+<?php include _include(APP_PATH.'view/htm/footer.inc.htm');?>
+<script ajax-eval="true">
+    var jsubmit=$("#time_submit"); var jinput = $("#timestamp"); var jtime=$("#see_count");var jdown_count = $("#down_count");
+    jsubmit.on('click',function(){
+        if(jinput.val().length!=17){alert('时间格式不正确');return false;}
+        jsubmit.button('loading');
+        var postdata='stamp='+jinput.val()+'&tid='+'<?php echo $_tid;?>'+'&views='+jtime.val()+'&down_count='+jdown_count.val();
+        $.xpost("<?php echo url('post-tt_settime_f');?>",postdata,function(code,message){
+            if(code!=0) alert(message);
+            else location.reload();
+        });
+    });
+    args.jmodal.on('hide.bs.modal', function () {
+        location.reload();
+    });
+</script>

@@ -1,0 +1,7 @@
+<?php $config = setting_get('rob_reward');$config = json_decode($config,true); if( !empty($config['fid-' . $fid]) AND param(0) == 'thread') { ?>
+
+<div>
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="悬赏金额" name="reward" value="1" id="reward" style="width:90px; display:inline"> 元 <span class="text-danger">（悬赏金额最低1元起）</span>
+</div>
+<?php } ?>

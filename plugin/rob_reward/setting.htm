@@ -1,0 +1,51 @@
+<?php include _include(ADMIN_PATH.'view/htm/header.inc.htm');?>
+<style>
+    .form-group.row{
+        margin-left: 10px;
+        user-select: none;
+    }
+</style>
+<form class="card">
+    <div class="card-body">
+        <h4>
+            <a class="icon icon-book" style="margin-bottom: 10px;">悬赏</a>
+            <br>插件由<a href="https://www.jbxiaozi.com/" target="_blank"><span style="color:#0070c0">脚本小子https://www.jbxiaozi.com/</span></a>制作
+        </h4>
+        <div class="alert alert-success msg" style="display: none">
+        </div>
+        <div class="alert alert-info" style="margin-top: 10px;" role="alert">
+        <h5 >选择开启的板块</h5>
+        <div class="form-group row">
+            <?php foreach ($forumlist as &$_forum){?>
+            <div class="col-sm-2">
+                <input class="form-check-input" <?php if(!empty($config['fid-' . $_forum['fid']])) {?> checked
+                <?php } ?> type="checkbox" name="fid-<?php echo $_forum['fid'] ?>" id="fid-<?php echo $_forum['fid'] ?>">
+                <label class="form-check-label" for="fid-<?php $_forum['fid'] ?>">
+                    <?php echo $_forum['name'] ?>
+                </label>
+            </div>
+            <?php } ?>
+        </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary submit" style="float: right" type="button">保存</button>
+        </div>
+
+</form>
+<script src="../view/js/jquery-3.1.0.js<?php echo $static_version;?>"></script>
+<script>
+    var timer = null;
+    $('.submit').click(function () {
+        $.post('', $('form').serialize(), function (r) {
+            if (r && r.code === 1) {
+                $('.msg').text('修改成功').show();
+            } else {
+                $('.msg').text(JSON.stringify(r)).show();
+            }
+            timer && clearTimeout(timer);
+            timer = setTimeout(function() {
+                $('.msg').hide();
+            }, 1500)
+        }, 'json')
+    })
+</script>

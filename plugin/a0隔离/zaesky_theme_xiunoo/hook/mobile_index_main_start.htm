@@ -1,0 +1,22 @@
+ <?php
+                    $hourtime = date("H");
+                ?>
+                <?php if($hourtime>=6 && $hourtime<=8): ?>
+                  <?php $tip = "早上好，一日之计在于晨！"?>
+				<?php elseif($hourtime>=9 && $hourtime<=11): ?>
+				  <?php $tip = "上午好，新的一天，勇敢前行！" ?>
+                <?php elseif($hourtime>=12 && $hourtime<=17): ?>
+                  <?php $tip = "下午好，是时候打个盹了！" ?>
+                <?php else : ?>
+                <?php $tip = "晚上好，注意早点休息！" ?>
+                <?php endif; ?>
+<div class=" d-flex justify-content-between breadcrumb hidden-lg">
+  <ul class="list-inline mb-0 ">
+    <li class="text-small list-inline-item border-right pr-2" data-toggle="tooltip" data-placement="top" title="<?php echo lang('mb_threads');?>"><i class="far fa-comment-alt text-muted"></i> <span class="text-muted "><?php echo lang('mb_threads');?></span> <b><?php echo $runtime['threads'];?></b></li>
+	<li class="text-small list-inline-item border-right pr-2" data-toggle="tooltip" data-placement="top" title="<?php echo lang('mb_posts');?>"><i class="far fa-comments   text-muted"></i> <span class="text-muted "><?php echo lang('mb_posts');?></span> <b><?php echo $runtime['posts'];?></b></li>
+	<li class="text-small list-inline-item" data-toggle="tooltip" data-placement="top" title="<?php echo lang('mb_users');?>"><i class="far fa-user-circle  text-muted"></i> <span class="text-muted"><?php echo lang('mb_users');?></span> <b><?php echo $runtime['users'];?></b></li>
+	</ul>
+	<span data-toggle="tooltip" data-placement="left" data-html="true" title="<?php echo $tip;?>"><i class="fa fa-heart text-danger"></i></span>
+</div>
+
+

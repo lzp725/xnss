@@ -1,0 +1,35 @@
+<script src="/plugin/xiunobbs_cn_dark/js/jquery.cookie.min.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+		Theme = $.cookie('Theme');
+		if (Theme == "1") {
+		    if (document.getElementById("message_ifr")) {
+                var tinymce = document.getElementById('message_ifr').contentWindow.document.head;
+                tinymce.innerHTML = '<style>.mce-content-body:before{color:#868e96 !important;content: attr(data-mce-placeholder);position: absolute;}.mce-content-body{color:#FFFFFF; !important}</style>';
+            }
+		    
+		}
+		
+	}
+	$('#theme').click(function() {
+	    Theme = $.cookie('Theme');
+		if (Theme == "null" || Theme == undefined ||Theme == "1") {
+			document.getElementById("theme").innerHTML="<i class='icon-circle' style='margin-right: 4px;'></i>深色";
+			$.cookie("Theme", "0", {expires: 365});
+			theme()
+		    if (document.getElementById("message_ifr")) {
+                var tinymce = document.getElementById('message_ifr').contentWindow.document.head;
+                tinymce.innerHTML = '<style>.mce-content-body:before{color:#868e96 !important;content: attr(data-mce-placeholder);position: absolute;}</style>';
+		    }
+		} else {
+			document.getElementById("theme").innerHTML="<i class = 'icon-circle-o' style ='margin-right: 4px;'></i>浅色";
+			$.cookie("Theme", "1", {expires: 365});
+			theme()
+		    if (document.getElementById("message_ifr")) {
+		        var tinymce = document.getElementById('message_ifr').contentWindow.document.head;
+                tinymce.innerHTML = '<style>.mce-content-body:before{color:#868e96 !important;content: attr(data-mce-placeholder);position: absolute;}.mce-content-body{color:#FFFFFF; !important}</style>';
+		    }
+		}
+	})
+	
+</script>

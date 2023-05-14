@@ -1,0 +1,10 @@
+{
+    "name": "每日签到",
+    "brief": "可设置签到积分用户表对应字段。<br>功能有天启关闭签到列表、签到按扭背景色选择、每日签到奖励、连签奖励、签到排名奖励。<br>插件由<a target='_blank' href='http://cha.sgahz.net/'>查鸽信息网</a>制作。<br>该版本为修改版，由<a target='_blank' href='http://www.iqismart.com/'>一起smart</a>修改。<br>修改说明: <br>1. 去掉了原在右侧栏显示的签到区块，改为在主题列表右上角;<br>2. 签到后显示已签到，并颜色灰掉；<br>3. 去掉了颜色的设置，改为了跟随主题颜色。",
+    "version": "1.9",
+    "bbs_version": "4.0",
+    "installed": 0,
+    "enable": 0,
+    "hooks_rank": [],
+    "dependencies": []
+}
